@@ -29,6 +29,7 @@ import javax.servlet.http.HttpServletRequest;
 
 @Aspect
 @Component
+@EnableAspectJAutoProxy
 public class ControllerAOP {
 	private static final Logger logger = LoggerFactory.getLogger(ControllerAOP.class);
 	@Pointcut("execution(public * com.cxytiandi.elementui.controller..*.*(..))")
@@ -44,7 +45,11 @@ public class ControllerAOP {
 		ResponseData<?> result = null;
 
 		try {
-			
+
+			// 如果需要打印入参，可以从这里取出打印
+			// Object[] args = pjp.getArgs();
+
+			// 本次操作用时（毫秒）
 
 			//url
 			logger.info("url={}", request.getRequestURI());
