@@ -12,4 +12,5 @@ public interface UserService {
 
     ResponseData<Boolean> login(LoginFormDto loginForm);
 
+    ResponseData<Integer> update(UserDto userDto);
 }

@@ -8,6 +8,7 @@ import com.cxytiandi.elementui.base.ResponseData;
 import com.cxytiandi.elementui.dto.LoginFormDto;
 import com.cxytiandi.elementui.dto.UserDto;
 import com.cxytiandi.elementui.mapper.UserMapper;
+import com.cxytiandi.elementui.model.Habbit;
 import com.cxytiandi.elementui.model.User;
 import com.cxytiandi.elementui.service.UserService;
 import com.cxytiandi.elementui.utils.CheckUtil;
@@ -63,6 +64,14 @@ public class UserServiceImpl implements UserService  {
         String realUserPassword = realUser.getPassword();
         CheckUtil.check(realUserPassword.equals(password),"password error",password);
         return ResponseData.ok(true);
+    }
+
+    @Override
+    public ResponseData<Integer> update(UserDto userDto) {
+        User user = new User();
+        user = (User) ObjectUtil.copyAttribute(userDto,user);
+        int userId  = userMapper.updateById(user);
+        return ResponseData.ok(userId);
     }
 
     public User getUserBy(UserDto userDto ) {

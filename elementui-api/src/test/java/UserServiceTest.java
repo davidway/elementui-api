@@ -61,5 +61,18 @@ public class UserServiceTest {
         Assert.assertEquals(result,myExpert);
     }
 
+    @Test
+    public void updateUser(){
+        UserDto userDto = new UserDto();
+        String username="249261450@qq.com";
+        userDto.setUsername(username);
+        String password = "zhuweiqiang1130";
+        password = SecureUtil.md5(password);
 
+        userDto.setPassword(password);
+        userDto.setAddress("东莞-横沥");
+        userDto.setDate(DateUtil.formatDate(new Date()));
+        userDto.setName("伟强-朱");
+        ResponseData<Integer> result = userService.update(userDto);
+    }
 }
